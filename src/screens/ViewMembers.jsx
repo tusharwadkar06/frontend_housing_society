@@ -8,8 +8,9 @@ import {
   TouchableOpacity,
   SafeAreaView,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+
 import BackgroundLayout from '../components/BackgroundLayout';
+import Fab from '../components/Fab';
 
 const MemberCard = ({ member }) => (
   <View style={styles.card}>
@@ -83,12 +84,8 @@ const ViewMembers = ({ navigation }) => {
           ))}
         </ScrollView>
 
-        <TouchableOpacity
-          style={styles.fab}
-          onPress={() => navigation.navigate('AddMembers')}
-        >
-          <Icon name="add" size={28} color="#fff" />
-        </TouchableOpacity>
+           <Fab onPress={() => navigation.navigate('AddMembers')} />
+
       </BackgroundLayout>
     </SafeAreaView>
   );

@@ -37,6 +37,8 @@ const ViewFlat = ({ navigation, route }) => {
     {
       image: require('../assets/images/time.gif'),
       label: 'No Dues',
+       onPress: () =>
+        navigation.navigate('flatbills', { members: flatData.residents }),
     },
     {
       image: require('../assets/images/document.gif'),
@@ -103,16 +105,6 @@ const ViewFlat = ({ navigation, route }) => {
           })}
         </View>
 
-        <View style={styles.contactRow}>
-          {contactItems.map((item, idx) => (
-            <TouchableOpacity
-              key={idx}
-              style={[styles.contactIcon, { backgroundColor: item.color }]}
-            >
-              <Image source={item.image} style={styles.contactIconImage} />
-            </TouchableOpacity>
-          ))}
-        </View>
       </ScrollView>
 
       <Footer activeTab={activeTab} onTabPress={(tab) => setActiveTab(tab)} />
@@ -179,3 +171,6 @@ const styles = StyleSheet.create({
 });
 
 export default ViewFlat;
+
+
+

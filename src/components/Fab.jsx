@@ -1,8 +1,16 @@
 import React from 'react';
-import { TouchableOpacity, StyleSheet } from 'react-native';
+import { TouchableOpacity, StyleSheet, Dimensions, Platform } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-const Fab = ({ onPress, iconName = 'add', iconSize = 28, iconColor = '#fff', style }) => {
+const { width, height } = Dimensions.get('window');
+
+const Fab = ({
+  onPress,
+  iconName = 'add',
+  iconSize = 28,
+  iconColor = '#fff',
+  style,
+}) => {
   return (
     <TouchableOpacity style={[styles.fab, style]} onPress={onPress}>
       <Icon name={iconName} size={iconSize} color={iconColor} />
@@ -13,15 +21,23 @@ const Fab = ({ onPress, iconName = 'add', iconSize = 28, iconColor = '#fff', sty
 const styles = StyleSheet.create({
   fab: {
     position: 'absolute',
-    right: 20,
-    bottom: 20,
-    width: 56,
-    height: 56,
+    right: width * 0.05, // 5% from right
+    bottom: height * 0.03, // 3% from bottom
+    width: width * 0.14,   // scale width (56px on ~400px screen)
+    height: width * 0.14,
     backgroundColor: '#ff9100',
-    borderRadius: 28,
+    borderRadius: (width * 0.14) / 2,
     justifyContent: 'center',
     alignItems: 'center',
-    elevation: 4,
+    elevation: 5,
+    ...Platform.select({
+      ios: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.3,
+        shadowRadius: 3,
+      },
+    }),
   },
 });
 
