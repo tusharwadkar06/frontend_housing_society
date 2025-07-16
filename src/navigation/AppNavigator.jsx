@@ -26,6 +26,7 @@ import MyScreen from '../screens/MyScreen';
 import NoticeBoard from '../screens/NoticeBoard';
 import Vehicles from '../screens/Vehicles';
 import Flatbills from '../screens/Flatbills';
+import Complaints from '../screens/Complaints';
 
 
 const Stack = createStackNavigator();
@@ -56,7 +57,7 @@ export default function AppNavigator() {
       <Stack.Screen name="noticeBoard" component={NoticeBoard} options={{ headerShown: false }} />
       <Stack.Screen name="vehicles" component={Vehicles} options={{ headerShown: false }} />
       <Stack.Screen name="flatbills" component={Flatbills} options={{ headerShown: false }} />
-      
+       <Stack.Screen name="complaints" component={Complaints} options={{ headerShown: false }} />
 
 
 

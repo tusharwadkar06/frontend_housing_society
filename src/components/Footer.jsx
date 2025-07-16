@@ -3,12 +3,19 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-
+import { useNavigation } from '@react-navigation/native';
 
 const Footer = ({ activeTab, onTabPress }) => {
+  const navigation = useNavigation();
+
+  const handlePress = (tabName) => {
+    onTabPress(tabName);            // Update active tab in parent
+    navigation.navigate(tabName);   // Navigate to corresponding screen
+  };
+
   return (
     <View style={styles.container}>
-     
+      {/* Home Tab */}
       <TabButton
         label="Home"
         icon={
@@ -19,9 +26,10 @@ const Footer = ({ activeTab, onTabPress }) => {
           />
         }
         isActive={activeTab === 'Home'}
-        onPress={() => onTabPress('Home')}
+        onPress={() => handlePress('Home')}
       />
-      
+
+      {/* Notice Tab */}
       <TabButton
         label="Notice"
         icon={
@@ -32,8 +40,9 @@ const Footer = ({ activeTab, onTabPress }) => {
           />
         }
         isActive={activeTab === 'Alert'}
-        onPress={() => onTabPress('Alert')}
+        onPress={() => handlePress('Alert')}
       />
+
       {/* Stats Tab */}
       <TabButton
         label="Stats"
@@ -45,21 +54,23 @@ const Footer = ({ activeTab, onTabPress }) => {
           />
         }
         isActive={activeTab === 'Stats'}
-        onPress={() => onTabPress('Stats')}
+        onPress={() => handlePress('Stats')}
       />
-      {/* Users Tab */}
+
+      {/* Complaints Tab */}
       <TabButton
-        label="Users"
+        label="Complaints"
         icon={
           <Icon
-            name="people-outline"
+            name="alert-circle-outline"
             size={24}
-            color={activeTab === 'Users' ? '#fff' : '#555'}
+            color={activeTab === 'complaints' ? '#fff' : '#555'}
           />
         }
-        isActive={activeTab === 'Users'}
-        onPress={() => onTabPress('Users')}
+        isActive={activeTab === 'complaints'}
+        onPress={() => handlePress('complaints')}
       />
+
       {/* More Tab */}
       <TabButton
         label="More"
@@ -71,13 +82,13 @@ const Footer = ({ activeTab, onTabPress }) => {
           />
         }
         isActive={activeTab === 'More'}
-        onPress={() => onTabPress('More')}
+        onPress={() => handlePress('More')}
       />
     </View>
   );
 };
 
-// TabButton component for each tab
+// Individual Tab Button
 const TabButton = ({ icon, label, isActive, onPress }) => {
   return (
     <TouchableOpacity
@@ -85,13 +96,11 @@ const TabButton = ({ icon, label, isActive, onPress }) => {
       style={isActive ? styles.activeTab : styles.tab}
     >
       {icon}
-      {/* Show label only if tab is active */}
       {isActive && <Text style={styles.activeLabel}>{label}</Text>}
     </TouchableOpacity>
   );
 };
 
-// Styles for the footer and tabs
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
