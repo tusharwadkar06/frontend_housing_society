@@ -306,8 +306,217 @@
 
 
 
+
 //Api Added this code
- import React, { useState, useEffect } from 'react';
+//  import React, { useState, useEffect } from 'react';
+// import {
+//   View,
+//   Text,
+//   StyleSheet,
+//   ScrollView,
+//   Image,
+//   TouchableOpacity,
+// } from 'react-native';
+// import BackgroundLayout from '../components/BackgroundLayout';
+// import Footer from '../components/Footer';
+// import { SocietyFlatsApi } from '../api/APICall';
+
+
+
+// const SocietyFlats = ({ navigation }) => {
+//   const [activeTab, setActiveTab] = useState('home');
+//   const [filteredData, setFilteredData] = useState([]);
+//   const [originalData, setOriginalData] = useState([]);
+//   const [errorMsg, setErrorMsg] = useState('');
+
+//   const fetchFlats = async () => {
+//     try {
+//       const response = await SocietyFlatsApi();
+
+//       if (response.Success === true) {
+//         const result = response.Message || [];
+//         setOriginalData(result);
+//         setFilteredData(result);
+//         setErrorMsg('');
+//       } else {
+//         setErrorMsg('Failed to fetch data.');
+//         setOriginalData([]);
+//         setFilteredData([]);
+//       }
+//     } catch (error) {
+//       setErrorMsg('Something went wrong. Please try again later.');
+//       setOriginalData([]);
+//       setFilteredData([]);
+//     }
+//   };
+
+//   useEffect(() => {
+//     fetchFlats();
+//   }, []);
+
+
+//   return (
+//     <BackgroundLayout
+//       blueHeight={80}
+//       showHeader={true}
+//       headerTitle="Society Flats"
+//       onBack={() => navigation.goBack()}
+//       onNotification={() => {}}
+//       showBadge={true}
+//       searchData={originalData}
+//       onSearchResults={(results) => setFilteredData(results)}
+//     >
+//       <ScrollView
+//         contentContainerStyle={styles.scroll}
+//         keyboardShouldPersistTaps="handled"
+//         showsVerticalScrollIndicator={false}
+//       >
+//         {/* 🔴 Show error message with Retry */}
+//         {errorMsg !== '' && (
+//           <View style={styles.errorContainer}>
+//             <Text style={styles.errorText}>{errorMsg}</Text>
+//             <TouchableOpacity onPress={fetchFlats} style={styles.retryButton}>
+//               <Text style={styles.retryText}>Retry</Text>
+//             </TouchableOpacity>
+//           </View>
+//         )}
+
+//         {/* Flats Data List */}
+//         {filteredData.map((item, index) => (
+//           <TouchableOpacity
+//             key={index}
+//             style={styles.card}
+//             onPress={() => navigation.navigate('viewFlat', { flatData: item })}
+//           >
+//             <View style={styles.cardHeader}>
+//               <Text style={styles.flat}>
+//                 Tower {item.towerno || '-'} - Flat {item.flatno || '-'}
+//               </Text>
+//               <View style={styles.iconRow}>
+//                 <TouchableOpacity style={styles.iconWrapper}>
+//                   <Image
+//                     source={require('../assets/societyflats/call.png')}
+//                     style={styles.iconImage}
+//                   />
+//                 </TouchableOpacity>
+//                 <TouchableOpacity style={styles.iconWrapper}>
+//                   <Image
+//                     source={require('../assets/societyflats/mail.png')}
+//                     style={styles.iconImage}
+//                   />
+//                 </TouchableOpacity>
+//                 <TouchableOpacity style={styles.iconWrapper}onPress={() => navigation.navigate('ViewFlat')}>
+//                   <Image
+//                     source={require('../assets/societyflats/message.png')}
+//                     style={styles.iconImage}
+//                   />
+//                 </TouchableOpacity>
+//               </View>
+//             </View>
+
+//             <Text style={styles.status}>{item.email}</Text>
+
+//             <View style={styles.row}>
+//               <Text style={styles.name}>{item.descn}</Text>
+//               <Text style={styles.phone}>{item.mobile}</Text>
+//             </View>
+//           </TouchableOpacity>
+//         ))}
+//       </ScrollView>
+
+//       <Footer activeTab={activeTab} onTabPress={(tab) => setActiveTab(tab)} />
+//     </BackgroundLayout>
+//   );
+// };
+
+// export default SocietyFlats;
+
+// const styles = StyleSheet.create({
+//   scroll: {
+//     padding: 2,
+//     paddingBottom: 24,
+//   },
+//   card: {
+//     backgroundColor: '#fff',
+//     borderRadius: 10,
+//     padding: 10,
+//     marginBottom: 8,
+//     elevation: 1,
+//     width: '100%',
+//   },
+//   cardHeader: {
+//     flexDirection: 'row',
+//     justifyContent: 'space-between',
+//     alignItems: 'center',
+//   },
+//   flat: {
+//     fontWeight: 'bold',
+//     fontSize: 16,
+//     color: '#1E1E1E',
+//   },
+//   status: {
+//     marginTop: 4,
+//     fontSize: 13,
+//     color: '#777',
+//   },
+//   row: {
+//     flexDirection: 'row',
+//     justifyContent: 'space-between',
+//     alignItems: 'center',
+//     marginTop: 2,
+//   },
+//   name: {
+//     fontSize: 13,
+//     color: '#444',
+//   },
+//   phone: {
+//     fontSize: 13,
+//     color: '#777',
+//   },
+//   iconRow: {
+//     flexDirection: 'row',
+//     columnGap: 10,
+//   },
+//   iconWrapper: {
+//     width: 35,
+//     height: 35,
+//     borderRadius: 17,
+//     padding: 5,
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//   },
+//   iconImage: {
+//     width: 30,
+//     height: 30,
+//     resizeMode: 'contain',
+//   },
+
+//   // Error + Retry styles
+//   errorContainer: {
+//     alignItems: 'center',
+//     marginVertical: 10,
+//   },
+//   errorText: {
+//     color: 'red',
+//     textAlign: 'center',
+//     fontSize: 14,
+//     marginBottom: 6,
+//   },
+//   retryButton: {
+//     backgroundColor: '#ff4d4d',
+//     paddingHorizontal: 12,
+//     paddingVertical: 6,
+//     borderRadius: 6,
+//   },
+//   retryText: {
+//     color: '#fff',
+//     fontWeight: 'bold',
+//     fontSize: 13,
+//   },
+// });
+
+
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -325,12 +534,15 @@ const SocietyFlats = ({ navigation }) => {
   const [filteredData, setFilteredData] = useState([]);
   const [originalData, setOriginalData] = useState([]);
   const [errorMsg, setErrorMsg] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
 
   const fetchFlats = async () => {
     try {
+      setIsLoading(true);
       const response = await SocietyFlatsApi();
+      console.log('API Response:', response);
 
-      if (response.Success === true) {
+      if (response && response.Success) {
         const result = response.Message || [];
         setOriginalData(result);
         setFilteredData(result);
@@ -341,9 +553,12 @@ const SocietyFlats = ({ navigation }) => {
         setFilteredData([]);
       }
     } catch (error) {
+      console.error('API Error:', error);
       setErrorMsg('Something went wrong. Please try again later.');
       setOriginalData([]);
       setFilteredData([]);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -367,77 +582,80 @@ const SocietyFlats = ({ navigation }) => {
         keyboardShouldPersistTaps="handled"
         showsVerticalScrollIndicator={false}
       >
-        {/* 🔴 Show error message with Retry */}
-        {errorMsg !== '' && (
+        {/* Error Message */}
+        {errorMsg !== '' ? (
           <View style={styles.errorContainer}>
             <Text style={styles.errorText}>{errorMsg}</Text>
             <TouchableOpacity onPress={fetchFlats} style={styles.retryButton}>
               <Text style={styles.retryText}>Retry</Text>
             </TouchableOpacity>
           </View>
-        )}
-
-        {/* Flats Data List */}
-        {filteredData.map((item, index) => (
-          <TouchableOpacity
-            key={index}
-            style={styles.card}
-            onPress={() => navigation.navigate('viewFlat', { flatData: item })}
-          >
-            <View style={styles.cardHeader}>
-              <Text style={styles.flat}>
-                Tower {item.towerno || '-'} - Flat {item.flatno || '-'}
-              </Text>
-              <View style={styles.iconRow}>
-                <TouchableOpacity style={styles.iconWrapper}>
-                  <Image
-                    source={require('../assets/societyflats/mail.png')}
-                    style={styles.iconImage}
-                  />
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.iconWrapper}>
-                  <Image
-                    source={require('../assets/societyflats/mail.png')}
-                    style={styles.iconImage}
-                  />
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.iconWrapper}>
-                  <Image
-                    source={require('../assets/societyflats/message.png')}
-                    style={styles.iconImage}
-                  />
-                </TouchableOpacity>
+        ) : isLoading ? (
+          <Text style={styles.loadingText}>Loading...</Text>
+        ) : (
+          filteredData.map((item, index) => (
+            <TouchableOpacity
+              key={index}
+              style={styles.card}
+              onPress={() => navigation.navigate('viewFlat', { flatData: item })}
+            >
+              <View style={styles.cardHeader}>
+                <Text style={styles.flatText}>
+                  Tower {item.towerno || '-'} - Flat {item.flatno || '-'}
+                </Text>
+                <View style={styles.iconRow}>
+                  <TouchableOpacity style={styles.iconWrapper}>
+                    <Image
+                      source={require('../assets/societyflats/call.png')}
+                      style={styles.iconImage}
+                    />
+                  </TouchableOpacity>
+                  <TouchableOpacity style={styles.iconWrapper}>
+                    <Image
+                      source={require('../assets/societyflats/mail.png')}
+                      style={styles.iconImage}
+                    />
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={styles.iconWrapper}
+                    onPress={() => navigation.navigate('ViewFlat')}
+                  >
+                    <Image
+                      source={require('../assets/societyflats/message.png')}
+                      style={styles.iconImage}
+                    />
+                  </TouchableOpacity>
+                </View>
               </View>
-            </View>
 
-            <Text style={styles.status}>{item.email}</Text>
+              <Text style={styles.emailText}>{item.email}</Text>
 
-            <View style={styles.row}>
-              <Text style={styles.name}>{item.descn}</Text>
-              <Text style={styles.phone}>{item.mobile}</Text>
-            </View>
-          </TouchableOpacity>
-        ))}
+              <View style={styles.row}>
+                <Text style={styles.nameText}>{item.descn}</Text>
+                <Text style={styles.phoneText}>{item.mobile}</Text>
+              </View>
+            </TouchableOpacity>
+          ))
+        )}
       </ScrollView>
 
-      <Footer activeTab={activeTab} onTabPress={(tab) => setActiveTab(tab)} />
+      <Footer activeTab={activeTab} onTabPress={setActiveTab} />
     </BackgroundLayout>
   );
 };
 
 export default SocietyFlats;
-
 const styles = StyleSheet.create({
   scroll: {
-    padding: 2,
-    paddingBottom: 24,
+    padding: 10,
+    paddingBottom: 100,
   },
   card: {
     backgroundColor: '#fff',
     borderRadius: 10,
-    padding: 10,
-    marginBottom: 8,
-    elevation: 1,
+    padding: 12,
+    marginBottom: 12,
+    elevation: 2,
     width: '100%',
   },
   cardHeader: {
@@ -445,27 +663,27 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  flat: {
+  flatText: {
     fontWeight: 'bold',
     fontSize: 16,
     color: '#1E1E1E',
   },
-  status: {
-    marginTop: 4,
+  emailText: {
+    marginTop: 6,
     fontSize: 13,
     color: '#777',
   },
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    marginTop: 4,
     alignItems: 'center',
-    marginTop: 2,
   },
-  name: {
+  nameText: {
     fontSize: 13,
     color: '#444',
   },
-  phone: {
+  phoneText: {
     fontSize: 13,
     color: '#777',
   },
@@ -476,8 +694,8 @@ const styles = StyleSheet.create({
   iconWrapper: {
     width: 35,
     height: 35,
-    borderRadius: 17,
-    padding: 5,
+    borderRadius: 18,
+    padding: 4,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -486,21 +704,20 @@ const styles = StyleSheet.create({
     height: 30,
     resizeMode: 'contain',
   },
-
-  // Error + Retry styles
+  // Error
   errorContainer: {
     alignItems: 'center',
-    marginVertical: 10,
+    marginVertical: 16,
   },
   errorText: {
     color: 'red',
     textAlign: 'center',
     fontSize: 14,
-    marginBottom: 6,
+    marginBottom: 8,
   },
   retryButton: {
     backgroundColor: '#ff4d4d',
-    paddingHorizontal: 12,
+    paddingHorizontal: 14,
     paddingVertical: 6,
     borderRadius: 6,
   },
@@ -508,5 +725,11 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: 'bold',
     fontSize: 13,
+  },
+  loadingText: {
+    textAlign: 'center',
+    fontSize: 14,
+    color: '#888',
+    marginVertical: 10,
   },
 });

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { LoginUrl, RegisteredUrl, SocietyFlatsUrl, } from "./URL";
+import { ComplaintsUrl, LoginUrl, RegisteredUrl, SocietyFlatsUrl, } from "./URL";
 
 
 
@@ -13,6 +13,6 @@ const postAPI = async (url, body) => {
 export const RegisteredApi = (payload) => postAPI(RegisteredUrl, payload);
 export const LoginApi = (payload) => postAPI(LoginUrl, payload);
 export const SocietyFlatsApi=(payload)=> postAPI(SocietyFlatsUrl,payload);
-
+export const ComplaintsApi=(payload)=> postAPI(ComplaintsUrl,payload);
 
 
