@@ -73,7 +73,7 @@ const ComplaintAssign = ({ navigation }) => {
       <BackgroundLayout
         blueHeight={80}
         showHeader={true}
-        headerTitle="Complaints"
+        headerTitle="Assign User"
         onBack={() => navigation.goBack()}
         onNotification={() => {}}
         showBadge={true}
