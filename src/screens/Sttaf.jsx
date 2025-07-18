@@ -320,8 +320,8 @@ const styles = StyleSheet.create({
   },
   assignedRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
   assignedLeft: { flexDirection: 'row', alignItems: 'center' },
-  callIcon: { width: 24, height: 24, marginRight: 20, marginTop: 10 },
-  trashContainer: { position: 'absolute', right: 10, bottom: 10 },
+  callIcon: { width: 24, height: 24, marginRight: 20, marginTop: -10 },
+  trashContainer: { position: 'absolute', right: 10, bottom: 10,marginRight:20, },
   profileCard: {
     marginTop: 20,
     backgroundColor: '#fff',
